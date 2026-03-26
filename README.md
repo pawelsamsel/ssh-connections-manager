@@ -1,37 +1,45 @@
 # SSH Connection Manager
 
-Interaktywny TUI do zarządzania połączeniami SSH. Dostępny w dwóch wersjach: Node.js i Bash.
+Interactive TUI for managing SSH connections. Available in two versions: Node.js and Bash.
 
-## Uruchomienie
+## Usage
 
 ```bash
-# Node.js (zalecane)
+# Node.js (recommended)
 node ssh-manager.js
 
 # Bash
 ./ssh-manager.sh
 ```
 
-## Skróty klawiszowe
+### Direct connect
 
-| Klawisz | Akcja |
-|---------|-------|
-| `↑` / `↓` | Nawigacja po liście |
-| `Enter` | Połącz |
-| `Ctrl+N` | Dodaj nowe połączenie |
-| `Ctrl+E` | Edytuj zaznaczone |
-| `Ctrl+D` | Usuń zaznaczone |
-| `ESC` | Wyczyść wyszukiwanie / wyjdź |
-| `Ctrl+C` | Wyjdź |
-| Dowolny znak | Szukaj na żywo |
+```bash
+./ssh-manager.js my-server
+```
 
-## Wyszukiwanie
+Connects immediately without opening the TUI.
 
-Zacznij pisać — lista filtruje się na bieżąco po nazwie, hostname i użytkowniku. `ESC` czyści wyszukiwanie.
+## Keyboard shortcuts
 
-## Plik konfiguracyjny
+| Key | Action |
+|-----|--------|
+| `↑` / `↓` | Navigate the list |
+| `Enter` | Connect |
+| `Ctrl+N` | Add new connection |
+| `Ctrl+E` | Edit selected |
+| `Ctrl+D` | Delete selected |
+| `ESC` | Clear search / quit |
+| `Ctrl+C` | Quit |
+| Any character | Live search |
 
-Połączenia zapisywane są w `ssh-connections-config` w formacie standardowego `~/.ssh/config`:
+## Search
+
+Start typing — the list filters in real time by name, hostname, and user. `ESC` clears the search.
+
+## Config file
+
+Connections are stored in `ssh-connections-config` using the standard `~/.ssh/config` format:
 
 ```
 Host my-server
@@ -41,15 +49,15 @@ Host my-server
   IdentityFile ~/.ssh/id_rsa
 ```
 
-Plik jest kompatybilny ze zwykłym SSH — można go używać bezpośrednio:
+The file is fully compatible with plain SSH:
 
 ```bash
 ssh -F ~/.ssh/ssh-connection-manager/ssh-connections-config my-server
 ```
 
-## Wymagania
+## Requirements
 
-| Wersja | Wymagania |
-|--------|-----------|
+| Version | Requirements |
+|---------|--------------|
 | `ssh-manager.js` | Node.js |
 | `ssh-manager.sh` | Bash 3.2+, `tput`, `ssh` |
