@@ -5,7 +5,32 @@ const path = require('path');
 const readline = require('readline');
 const { execSync, spawn } = require('child_process');
 
-const CONFIG_FILE = path.join(__dirname, 'ssh-connections-config');
+// ── App config ────────────────────────────────────────────────────────────────
+
+const APP_CONFIG_FILE = path.join(__dirname, '.ssh-manager.json');
+
+function resolveConnectionsFile() {
+  let raw = 'ssh-connections-config';
+
+  if (fs.existsSync(APP_CONFIG_FILE)) {
+    try {
+      const cfg = JSON.parse(fs.readFileSync(APP_CONFIG_FILE, 'utf8'));
+      if (cfg.connectionsFile) raw = cfg.connectionsFile;
+    } catch {
+      // malformed config — use default
+    }
+  }
+
+  if (raw.startsWith('~/')) {
+    return path.join(process.env.HOME || '~', raw.slice(2));
+  }
+  if (path.isAbsolute(raw)) {
+    return raw;
+  }
+  return path.resolve(__dirname, raw);
+}
+
+const CONFIG_FILE = resolveConnectionsFile();
 
 // ── Parser ────────────────────────────────────────────────────────────────────
 
