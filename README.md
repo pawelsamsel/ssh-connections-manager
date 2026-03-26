@@ -2,6 +2,8 @@
 
 Interactive TUI for managing SSH connections. Available in two versions: Node.js and Bash.
 
+![Preview](docs/deploydock-preview.png)
+
 ## Usage
 
 ```bash
