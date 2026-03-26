@@ -1,17 +1,13 @@
 # SSH Connection Manager
 
-Interactive TUI for managing SSH connections. Available in two versions: Node.js and Bash.
+Interactive TUI for managing SSH connections.
 
 ![Preview](docs/deploydock-preview.png)
 
 ## Usage
 
 ```bash
-# Node.js (recommended)
 node ssh-manager.js
-
-# Bash
-./ssh-manager.sh
 ```
 
 ### Direct connect
@@ -104,7 +100,4 @@ sshm my-server    # connect directly
 
 ## Requirements
 
-| Version | Requirements |
-|---------|--------------|
-| `ssh-manager.js` | Node.js |
-| `ssh-manager.sh` | Bash 3.2+, `tput`, `ssh` |
+Node.js
